@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat Box</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+    <!-- <div id="msg-container">
+        <ul id="messages" class="messages"></ul>
+        <div class="bottom clearfix">
+            
+            <form action="#" class="form">
+                <div class="messagecontainer">
+                    <input type="text" id="msg-input" class="msg-input" placeholder="Type your message here..">
+                </div>
+                <button id="send-btn">Send</button>
+            </form>
+        </div>
+    </div> -->
+    <ul id="messages"></ul>
+    <i id="typingstatus"></i>
+    <form id="form" action="">
+        <input id="input" autocomplete="off" placeholder="Type your message here..."/>
+        <button>Send</button>
+    </form>
+
+    <!-- Script addition -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/rexeze/formatTimeStamp/src/index-cdn.js"></script>
+</body>
+
+</html>
