@@ -1,11 +1,18 @@
 const socket = io();
 const messages = document.getElementById('messages');
+// const moment = require("moment");
+// const userName = prompt("Recognize yourself!");
+// socket.emit('new-user', userName);
 
 (function () {
     $("form").submit(function (win) {
         let list = document.createElement("li");
         // Preventing window reloading
         win.preventDefault();
+       /*  socket.on('user-connected', userName => {
+        console.log("file: script.js ~ line 13 ~ userName", userName)
+            messages.appendChild(list).append(`${userName} connected`);
+        }); */
         socket.emit("sendMessage", $("input").val());
 
         messages.appendChild(list).append($("input").val());
@@ -29,6 +36,7 @@ const messages = document.getElementById('messages');
 // Fetch the history of chat messages from db
 const fetchMsgs = function () {
     fetch("/chats").then(data => {
+        console.log("file: script.js ~ line 32 ~ fetch ~ data", data)
         return data.json();
     }).then(jsonData => {
         jsonData.map(msg => {
@@ -37,7 +45,7 @@ const fetchMsgs = function () {
             messages.appendChild(li).append(msg.message);
             messages
                 .appendChild(span)
-                .append("by " + msg.sender + ": " + formatTimeAgo(msg.createdAt));
+                .append("by " + msg.senderId + ": " + formatTimeAgo(msg.createdAt));
         });
     });
 };
