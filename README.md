@@ -2,7 +2,7 @@
     This project built using NodeJS, Express, Mongoose, Socket.io, RESTful apis
 Here is a glimpse of it..
 
-![alt text](./chat_app.jpg)
+![alt text](chat_app.png)
 
 # Features
     - Uses Express as the application Framework.
