@@ -18,6 +18,10 @@ const chatSchema = new Schema({
         type: Date,
         default: Date.now(),
     },
+    profileColor: {
+        type: String,
+        default: "#ffcf12"
+    }
 }, {
     timestamps: true
 });

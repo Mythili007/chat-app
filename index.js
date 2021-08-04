@@ -15,11 +15,6 @@ const socket = io(http);
 const Chat = require('./chats.schema.js');
 const dbConnection = require('./dbConnection.js');
 let userInfo;
-// var dbConnectionRef
-// dbConnection.then((db) => {
-    //     dbConnectionRef = db
-    // });
-    
     
 // Middleware for parsing json in body payload
 app.use(bodyParser.json());
@@ -75,12 +70,11 @@ socket.on("connection", (socketConn) => {
                 message: msgJSON.message,
                 senderId: msgJSON.username,
                 sendDate: Date(msgJSON.sendDate),
+                profileColor: msgJSON.profileColor,
             });
 
             data.save();
-            // db.save(msgJSON);
         });
-        // dbConnectionRef.save(msgJSON)
     });
 });
 

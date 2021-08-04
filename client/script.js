@@ -1,10 +1,10 @@
-// const socket = io();
-const socket = io("http://localhost:6001");
+const socket = io();
 
 // Get a hold of necessary UI elements
 const messages = document.getElementById('messages');
 let msgInput = document.getElementById("messages");
 let typing = document.getElementById("typing");
+const chatbox = document.getElementById("chatbox");
 
 const userName_value = prompt("Recognize yourself!");
 const userColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -29,17 +29,18 @@ function fetchMsgs(name) {
         return data.json();
     }).then(jsonData => {
         jsonData.map(msg => {
-            let li = document.createElement("li");
-            let span = document.createElement("span");
+            console.log(msg)
 
-            // Adding styles
-            setCSSStyles(li, span);
-            messages
-                .appendChild(li)
-                .append(msg.senderId + " : " + msg.message);
-            messages
-                .appendChild(span)
-                .append(moment(msg.createdAt).fromNow());
+            const temp_userColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            var userProfileColor = (msg.profileColor) ? msg.profileColor : temp_userColor;
+
+            jsonObjNormalization = {
+                'message': msg.message,
+                'username': msg.senderId,
+                'sendDate': Date.parse(msg.createdAt),
+                'profileColor': userProfileColor,
+            }
+            populateUI(jsonObjNormalization);
         });
     }).catch(err => {
         console.error(err);
@@ -95,15 +96,32 @@ socket.on('user-connected', userInfo => {
 });
 
 function populateUI(dataJSON) {
-    let list = document.createElement("li");
-    let span = document.createElement("span");
+    let list_forMessage = document.createElement("li");
+    let paragraph_forMessage = document.createElement("p");
+    let span_forDate = document.createElement("span");
+    let span_forName = document.createElement("span");
+    let span_forMessage = document.createElement("span");
     let messages = document.getElementById("messages");
 
     // Setting css properties
-    setCSSStyles(list, span);
+    setCSSStyles(list_forMessage, span_forDate);
+    span_forName.style.color = dataJSON.profileColor;
+    span_forName.style.fontWeight = "bold";
 
-    messages.appendChild(list).append(dataJSON.username + " : " + dataJSON.message);
-    messages.appendChild(span).append(moment(dataJSON.sendDate).fromNow());
+    paragraph_forMessage.appendChild(span_forName).append(dataJSON.username + " : ")
+    paragraph_forMessage.appendChild(span_forMessage).append(dataJSON.message);
+    list_forMessage.appendChild(paragraph_forMessage);
+
+    list_forMessage.appendChild(span_forDate).append(moment(dataJSON.sendDate).fromNow());
+    messages.appendChild(list_forMessage);
+
+    // algin left or right
+    var isMine = dataJSON.username == userName_value;
+    var textAlignPosition = (isMine == true) ? "right" : "left";
+    list_forMessage.style.textAlign = textAlignPosition;
+
+    // scroll to the bottom
+    messages.scrollIntoView(false)
 }
 
 socket.on('sendMessage', data => {
