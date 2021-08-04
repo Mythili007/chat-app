@@ -12,22 +12,27 @@
 </head>
 
 <body>
-    <!-- <div class="msg-container" id="msg-container"> -->
-        <ul id="messages"></ul>
-        <i id="typingstatus"></i>
-    <!-- </div> -->
-    <!-- <div class="bottom-div" id="bottom-div"> -->
-        <form id="form" action="">
-            <input id="input" autocomplete="off" placeholder="Type your message here..."/>
+    <div id="wrapper">
+        <div id="menu">
+            <p class="welcome">Welcome, </p><b><span id="userId"></span> </b>
+        </div>
+        
+        <div id="chatbox">
+            <ul id="messages"></ul>
+            <i id="typing"></i>
+        </div>
+
+        <form id="form" name="message" action="">
+            <input name="usermsg" type="text" id="input" autocomplete="off"/>
             <button>Send</button>
         </form>
-    <!-- </div> -->
-
+    </div>
     <!-- Script addition -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="./script.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/rexeze/formatTimeStamp/src/index-cdn.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js"> </script>
 </body>
 
 </html>
