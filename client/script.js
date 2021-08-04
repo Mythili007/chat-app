@@ -14,14 +14,11 @@ let userInfo = {
     profileColor: userColor
 }
 
-function setCSSStyles(list, span, data) {
+function setCSSStyles(list, span) {
     list.style.marginTop = "20px";
     list.style.borderRadius = "10px";
     list.style.overflowWrap = "break-word";
-    
     span.style.fontSize = "1.2rem";
-    if (data)
-        span.style.color = data.profileColor;
 }
 
 /*
@@ -103,7 +100,7 @@ function populateUI(dataJSON) {
     let messages = document.getElementById("messages");
 
     // Setting css properties
-    setCSSStyles(list, span, dataJSON);
+    setCSSStyles(list, span);
 
     messages.appendChild(list).append(dataJSON.username + " : " + dataJSON.message);
     messages.appendChild(span).append(moment(dataJSON.sendDate).fromNow());
