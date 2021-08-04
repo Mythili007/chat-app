@@ -11,12 +11,10 @@ router.get("/", (req, res, next) => {
 
     dbConnection.then(async() => {
         const chats = await chatModel.find({
-            message: "Anonymous"
+            senderId: "Anonymous"
         })
-        console.log("file: chats.js ~ line 16 ~ dbConnection.then ~ chats", chats)
+        // console.log("file: chats.js ~ line 16 ~ dbConnection.then ~ chats", chats)
         res.json(chats);
-        // chatModel.find({}).then(chat => {
-        // })
     });
 });
 

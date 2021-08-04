@@ -23,6 +23,7 @@ const socket = io(http);
 // Db connection
 const Chat = require('./chats.schema.js');
 const dbConnection = require('./dbConnection.js');
+const users = {};
 // Create an event listener
 // When user connects
 socket.on("connection", (socket) => {
@@ -31,6 +32,12 @@ socket.on("connection", (socket) => {
     socket.on('disconnect', () => {
         console.log("User Disconnected!!");
     });
+
+    /* socket.on('new-user', name => {
+    console.log("file: index.js ~ line 37 ~ socket.on ~ name", name)
+        users[socket.id] = name;
+        socket.broadcast.emit('user-connected', name);
+    }); */
 
     // When someone types something
     socket.on('typing', (data) => {
