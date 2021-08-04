@@ -10,10 +10,7 @@ router.get("/", (req, res, next) => {
     res.statusCode = 200;
 
     dbConnection.then(async() => {
-        const chats = await chatModel.find({
-            senderId: "Anonymous"
-        })
-        // console.log("file: chats.js ~ line 16 ~ dbConnection.then ~ chats", chats)
+        const chats = await chatModel.find({});
         res.json(chats);
     });
 });

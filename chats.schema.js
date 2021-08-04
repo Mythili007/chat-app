@@ -14,6 +14,10 @@ const chatSchema = new Schema({
     senderId: {
         type: String,
     },
+    sendDate: {
+        type: Date,
+        default: Date.now(),
+    },
 }, {
     timestamps: true
 });
