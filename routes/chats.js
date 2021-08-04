@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
     res.setHeader("Content-Type", "application/json");
     res.statusCode = 200;
 
-    dbConnection.then(async() => {
+    dbConnection.then(async () => {
         const chats = await chatModel.find({});
         res.json(chats);
     });
