@@ -102,9 +102,6 @@ button {
     display: flex;
 }
 
-#menu p.welcome {
-    flex: 1;
-}
 /* For exit button */
 
 /* a#exit {
