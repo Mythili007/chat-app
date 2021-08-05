@@ -25,3 +25,5 @@ Here is a glimpse of it..
 
 **Note: App runs at port 6001**
 
+## You can find my thoughts about scalability [here](suggestions.md)
+
